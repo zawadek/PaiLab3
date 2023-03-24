@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: head"><title>Spring Security</title></head>
+<body>
+<div th:include="layout :: navigationPanel"></div>
+<h1>Edycja danych:</h1>
+<form th:action="@{/edit}" method="POST" th:object="${user}">
+    <input type="text" th:field="*{name}" placeholder="Imię"/>
+
+    <ul>
+        <li th:each="err : ${#fields.errors('name')}" th:text="${err}" class="error"/>
+    </ul>
+
+    <input type="text" th:field="*{surname}" placeholder="Nazwisko"/>
+
+    <ul>
+        <li th:each="err : ${#fields.errors('surname')}" th:text="${err}" class="error"/>
+    </ul>
+
+    <input type="text" th:field="*{login}" placeholder="Login"/>
+    <ul>
+        <li th:each="err : ${#fields.errors('login')}" th:text="${err}" class="error"/>
+    </ul>
+
+    <input type="password" th:field="*{password}" placeholder="Hasło"/>
+
+    <ul>
+        <li th:each="err : ${#fields.errors('password')}" th:text="${err}" class="error"/>
+    </ul>
+
+    <button type="submit">Zatwierdź</button>
+</form>
+<div th:include="layout :: footer"></div>
+</body>
+</html>

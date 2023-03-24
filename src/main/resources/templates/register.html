@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: head"></head>
+<body>
+    <div th:include="layout :: navigationPanel"></div>
+    <h1>Rejestracja:</h1>
+    <form th:action="@{/register}" method="POST" th:object="${user}">
+        <input type="text" th:field="*{name}" placeholder="Imię"/>
+        <ul>
+            <li th:each="err : ${#fields.errors('name')}" th:text="${err}" class="error" />
+        </ul>
+        <input type="text" th:field="*{surname}" placeholder="Nazwisko"/>
+        <ul>
+            <li th:each="err : ${#fields.errors('surname')}" th:text="${err}" class="error" />
+        </ul>
+        <input type="text" th:field="*{login}" placeholder="Login" min="3"/>
+        <ul>
+            <li th:each="err : ${#fields.errors('login')}" th:text="${err}" class="error" />
+        </ul>
+        <input type="password" th:field="*{password}" placeholder="Hasło" min="5"/>
+        <ul>
+            <li th:each="err : ${#fields.errors('password')}" th:text="${err}" class="error" />
+        </ul>
+        <button type="submit">Zarejestruj się</button>
+    </form>
+    <div th:include="layout :: footer"></div>
+</body>
+</html>
